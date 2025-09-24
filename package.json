@@ -17,7 +17,7 @@
     "tailwindcss"
   ],
   "author": "Garvit Official",
-  "license": "MIT",
+  "license": "Educational Use Only",
   "repository": {
     "type": "git",
     "url": "https://github.com/GarvitOfficial/google-dork-toolkit.git"
@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/GarvitOfficial/google-dork-toolkit/issues"
   },
-  "homepage": "https://github.com/GarvitOfficial/google-dork-toolkit#readme",
+  "homepage": "https://garvitofficial.github.io/google-dork-toolkit/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

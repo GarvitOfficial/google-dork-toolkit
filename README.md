@@ -2,7 +2,7 @@
 
 A powerful, modern web application for advanced Google search queries (Google Dorking) with an intuitive interface and comprehensive dork templates for cybersecurity research, OSINT investigations, and educational purposes.
 
-![Google Dork Toolkit](https://img.shields.io/badge/React-18.x-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-blue) ![License](https://img.shields.io/badge/License-MIT-green)
+![Google Dork Toolkit](https://img.shields.io/badge/React-18.x-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-blue) ![License](https://img.shields.io/badge/License-Educational%20Use%20Only-orange)
 
 ## ✨ Features
 
@@ -148,7 +148,9 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under an **Educational Use Only** license - see the [LICENSE](LICENSE) file for details.
+
+**⚠️ IMPORTANT:** This software is restricted to educational purposes only. Commercial use, malicious activities, and unauthorized access are strictly prohibited. Please read the full license terms before using this tool.
 
 ## 🙏 Acknowledgments
 

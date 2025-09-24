@@ -1,17 +1,44 @@
-MIT License
+EDUCATIONAL USE LICENSE
 
-Copyright (c) 2024 Google Dork Toolkit
+Copyright (c) 2024 Garvit Bhardwaj
+
+EDUCATIONAL USE ONLY - RESTRICTED LICENSE
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+of this software and associated documentation files (the "Software"), to use
+the Software solely for educational, learning, and academic purposes, subject
+to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+PERMITTED USES:
+- Educational research and learning
+- Academic coursework and assignments
+- Security awareness training
+- Cybersecurity education
+- Personal skill development
 
+PROHIBITED USES:
+- Commercial use of any kind
+- Malicious activities or unauthorized access
+- Illegal penetration testing without proper authorization
+- Any activities that violate applicable laws or regulations
+- Distribution for commercial purposes
+- Use in production environments for business purposes
+
+CONDITIONS:
+1. The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+2. Users must comply with all applicable laws and regulations in their jurisdiction.
+
+3. Users must obtain proper authorization before conducting any security testing.
+
+4. This software is provided for educational purposes only and should not be used
+   for any unauthorized or illegal activities.
+
+5. The software may not be redistributed, sold, or used for commercial purposes
+   without explicit written permission from the copyright holder.
+
+DISCLAIMER:
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,18 +47,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-EDUCATIONAL USE DISCLAIMER:
-This software is intended for educational and legitimate security research 
-purposes only. Users are responsible for ensuring their use complies with 
-applicable laws, regulations, and ethical guidelines. The authors and 
-contributors are not responsible for any misuse of this software.
+ETHICAL USE STATEMENT:
+This tool is designed to help users understand Google search operators and
+improve their search skills. It should only be used for legitimate educational
+purposes and in compliance with Google's Terms of Service and applicable laws.
+Users are responsible for ensuring their use of this tool is ethical and legal.
 
-By using this software, you agree to:
-1. Use it only for educational, research, or legitimate security testing purposes
-2. Respect the privacy and rights of others
-3. Comply with all applicable laws and regulations
-4. Follow responsible disclosure practices for any vulnerabilities discovered
-5. Not use this software for malicious, illegal, or unethical activities
-
-Any use of this software that violates these terms is strictly prohibited and 
-may result in legal consequences for the user.
+For questions about licensing or permitted uses, please contact: garvitbhardwaj12@gmail.com
