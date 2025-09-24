@@ -399,11 +399,11 @@ const GoogleDorkingTool: React.FC = () => {
   // Apply complexity filter
   if (filterComplexity) {
     filteredTemplates = filteredTemplates.filter(template => {
-      const complexity = template.complexity || 1;
+      const complexity = template.complexity || 'basic';
       switch (filterComplexity) {
-        case 'low': return complexity <= 3;
-        case 'medium': return complexity > 3 && complexity <= 7;
-        case 'high': return complexity > 7;
+        case 'low': return complexity === 'basic';
+        case 'medium': return complexity === 'intermediate';
+        case 'high': return complexity === 'advanced' || complexity === 'expert';
         default: return true;
       }
     });
@@ -413,10 +413,11 @@ const GoogleDorkingTool: React.FC = () => {
   filteredTemplates.sort((a, b) => {
     switch (sortBy) {
       case 'risk':
-        const riskOrder = { 'low': 1, 'medium': 2, 'high': 3 };
+        const riskOrder = { 'low': 1, 'medium': 2, 'high': 3, 'critical': 4 };
         return (riskOrder[b.riskLevel as keyof typeof riskOrder] || 0) - (riskOrder[a.riskLevel as keyof typeof riskOrder] || 0);
       case 'complexity':
-        return (b.complexity || 1) - (a.complexity || 1);
+        const complexityOrder = { 'basic': 1, 'intermediate': 2, 'advanced': 3, 'expert': 4 };
+        return (complexityOrder[b.complexity as keyof typeof complexityOrder] || 1) - (complexityOrder[a.complexity as keyof typeof complexityOrder] || 1);
       default:
         return a.name.localeCompare(b.name);
     }
@@ -717,8 +718,8 @@ const GoogleDorkingTool: React.FC = () => {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
-                <div className={`text-2xl font-bold ${queryMetrics.complexity === 'Low' ? 'text-green-500' : queryMetrics.complexity === 'Medium' ? 'text-yellow-500' : 'text-red-500'}`}>
-                  {queryMetrics.complexity}
+                <div className={`text-2xl font-bold ${queryMetrics.complexity <= 3 ? 'text-green-500' : queryMetrics.complexity <= 7 ? 'text-yellow-500' : 'text-red-500'}`}>
+                  {queryMetrics.complexity <= 3 ? 'Low' : queryMetrics.complexity <= 7 ? 'Medium' : 'High'}
                 </div>
                 <div className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Complexity</div>
               </div>
@@ -775,10 +776,10 @@ const GoogleDorkingTool: React.FC = () => {
                   </div>
                 </div>
                 <div className="space-y-2 max-h-40 overflow-y-auto">
-                  {batchQueries.map((query, index) => (
+                  {batchQueries.map((batchQuery, index) => (
                     <div key={index} className={`p-3 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-white'} border ${darkMode ? 'border-gray-600' : 'border-gray-200'} flex justify-between items-center`}>
                       <span className={`text-sm font-mono ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                        {query.length > 60 ? `${query.substring(0, 60)}...` : query}
+                        {batchQuery.query.length > 60 ? `${batchQuery.query.substring(0, 60)}...` : batchQuery.query}
                       </span>
                       <button
                         onClick={() => setBatchQueries(batchQueries.filter((_, i) => i !== index))}

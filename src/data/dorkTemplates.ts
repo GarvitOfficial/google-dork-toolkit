@@ -405,6 +405,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'vulnerable-files',
     description: 'Find PHP info disclosure pages',
     riskLevel: 'high',
+    complexity: 'basic',
     tags: ['php', 'info', 'disclosure']
   },
   {
@@ -414,6 +415,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'vulnerable-files',
     description: 'Find SQL dump files',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['sql', 'database', 'dump']
   },
   {
@@ -423,6 +425,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'vulnerable-files',
     description: 'Find log files with error information',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['logs', 'errors', 'debug']
   },
   {
@@ -432,6 +435,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'vulnerable-files',
     description: 'Find backup and old files',
     riskLevel: 'high',
+    complexity: 'basic',
     tags: ['backup', 'old', 'archive']
   },
 
@@ -443,33 +447,37 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'errors',
     description: 'Find pages with SQL error messages',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['sql', 'error', 'database']
   },
   {
     id: 'err-2',
     name: 'PHP Errors',
-    query: 'intext:"Warning:" "include" OR "require" OR "fopen"',
+    query: 'intext:"Warning:" OR "Fatal error:" OR "Parse error:"',
     category: 'errors',
-    description: 'Find PHP error messages',
+    description: 'Find pages with PHP error messages',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['php', 'warning', 'include']
   },
   {
     id: 'err-3',
     name: 'ASP.NET Errors',
-    query: 'intext:"Server Error" "ASP.NET" OR "System.Exception"',
+    query: 'intext:"Server Error" OR "Runtime Error" OR "Exception Details"',
     category: 'errors',
     description: 'Find ASP.NET error pages',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['asp.net', 'error', 'exception']
   },
   {
     id: 'err-4',
-    name: 'Stack Traces',
-    query: 'intext:"at java." OR "at org." OR "Exception in thread"',
+    name: 'Java Stack Traces',
+    query: 'intext:"java.lang" OR "Exception in thread" OR "at java."',
     category: 'errors',
-    description: 'Find Java stack traces',
+    description: 'Find Java stack trace errors',
     riskLevel: 'medium',
+    complexity: 'intermediate',
     tags: ['java', 'stack', 'trace']
   },
 
@@ -481,6 +489,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'juicy-info',
     description: 'Find files containing email addresses',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['email', 'contact', 'list']
   },
   {
@@ -490,6 +499,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'juicy-info',
     description: 'Find files containing API keys',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['api', 'key', 'credentials']
   },
   {
@@ -499,6 +509,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'juicy-info',
     description: 'Find SSH private keys',
     riskLevel: 'high',
+    complexity: 'advanced',
     tags: ['ssh', 'private', 'key']
   },
   {
@@ -508,6 +519,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'juicy-info',
     description: 'Find potential credit card information',
     riskLevel: 'high',
+    complexity: 'expert',
     tags: ['credit', 'card', 'payment']
   },
 
@@ -519,6 +531,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'login',
     description: 'Find admin login pages',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['login', 'admin', 'portal']
   },
   {
@@ -528,6 +541,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'login',
     description: 'Find CMS login interfaces',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['cms', 'login', 'wordpress']
   },
   {
@@ -537,6 +551,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'login',
     description: 'Find database administration interfaces',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['database', 'admin', 'phpmyadmin']
   },
   {
@@ -546,6 +561,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'login',
     description: 'Find router admin interfaces',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['router', 'admin', 'network']
   },
 
@@ -557,6 +573,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'databases',
     description: 'Find database files',
     riskLevel: 'high',
+    complexity: 'basic',
     tags: ['database', 'sql', 'mdb']
   },
   {
@@ -566,6 +583,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'databases',
     description: 'Find SQLite database files',
     riskLevel: 'high',
+    complexity: 'basic',
     tags: ['sqlite', 'database', 'mobile']
   },
   {
@@ -575,6 +593,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'databases',
     description: 'Find MongoDB related files',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['mongodb', 'nosql', 'bson']
   },
   {
@@ -584,6 +603,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'databases',
     description: 'Find database dump files',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['dump', 'backup', 'export']
   },
 
@@ -595,6 +615,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'config',
     description: 'Find configuration files',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['config', 'settings', 'conf']
   },
   {
@@ -604,15 +625,17 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'config',
     description: 'Find environment configuration files',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['env', 'environment', 'secrets']
   },
   {
     id: 'config-3',
     name: 'Docker Files',
-    query: 'filetype:yml "docker" OR "dockerfile" "password"',
+    query: 'filetype:yml "docker" OR "Dockerfile" "password"',
     category: 'config',
     description: 'Find Docker configuration files',
     riskLevel: 'medium',
+    complexity: 'intermediate',
     tags: ['docker', 'container', 'yml']
   },
   {
@@ -622,6 +645,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'config',
     description: 'Find Apache configuration files',
     riskLevel: 'medium',
+    complexity: 'intermediate',
     tags: ['apache', 'httpd', 'htaccess']
   },
 
@@ -633,6 +657,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'network',
     description: 'Find network scan results',
     riskLevel: 'medium',
+    complexity: 'intermediate',
     tags: ['nmap', 'scan', 'network']
   },
   {
@@ -642,6 +667,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'network',
     description: 'Find firewall configuration files',
     riskLevel: 'medium',
+    complexity: 'advanced',
     tags: ['firewall', 'iptables', 'security']
   },
   {
@@ -651,6 +677,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'network',
     description: 'Find VPN configuration files',
     riskLevel: 'high',
+    complexity: 'advanced',
     tags: ['vpn', 'openvpn', 'tunnel']
   },
   {
@@ -660,6 +687,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'network',
     description: 'Find network topology documents',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['topology', 'diagram', 'network']
   },
 
@@ -671,6 +699,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'devices',
     description: 'Find IP camera interfaces',
     riskLevel: 'high',
+    complexity: 'intermediate',
     tags: ['camera', 'surveillance', 'iot']
   },
   {
@@ -680,6 +709,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'devices',
     description: 'Find network printer interfaces',
     riskLevel: 'medium',
+    complexity: 'basic',
     tags: ['printer', 'hp', 'canon']
   },
   {
@@ -689,6 +719,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'devices',
     description: 'Find IoT device interfaces',
     riskLevel: 'medium',
+    complexity: 'intermediate',
     tags: ['iot', 'device', 'smart']
   },
   {
@@ -698,7 +729,7 @@ export const dorkTemplates: DorkTemplate[] = [
     category: 'devices',
     description: 'Find SCADA/HMI interfaces',
     riskLevel: 'critical',
-    complexity: 'advanced',
+    complexity: 'expert',
     tags: ['scada', 'hmi', 'industrial']
   },
 
