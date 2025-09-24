@@ -9,14 +9,8 @@ import {
   AdjustmentsHorizontalIcon,
   ClockIcon,
   UserIcon,
-  MapPinIcon,
-  BuildingOfficeIcon,
-  AtSymbolIcon,
-  PhoneIcon,
-  ShareIcon,
   SunIcon,
   MoonIcon,
-  HeartIcon,
   StarIcon,
   FunnelIcon,
   ChartBarIcon,
@@ -24,8 +18,6 @@ import {
   PlayIcon,
   XMarkIcon,
   ClipboardIcon,
-  PlusIcon,
-  PencilIcon,
   KeyIcon,
   FolderIcon,
   ServerIcon,
@@ -39,7 +31,7 @@ import {
   DocumentTextIcon,
   CircleStackIcon
 } from '@heroicons/react/24/outline';
-import { dorkTemplates, dorkCategories, getTemplatesByCategory, searchTemplates } from '../data/dorkTemplates';
+import { dorkTemplates, dorkCategories, getTemplatesByCategory, searchTemplates, DorkTemplate } from '../data/dorkTemplates';
 
 interface TargetingParams {
   username: string;
@@ -73,7 +65,7 @@ interface BatchQuery {
   query: string;
 }
 
-const iconMapLocal: { [key: string]: React.ComponentType<any> } = {
+const iconMapLocal: { [key: string]: React.ComponentType<{ className?: string }> } = {
   KeyIcon, FolderIcon, ServerIcon, ExclamationTriangleIcon,
   ShieldExclamationIcon, BugAntIcon, InformationCircleIcon,
   UserIcon, ShoppingCartIcon, GlobeAltIcon, LockClosedIcon,
@@ -84,7 +76,7 @@ const GoogleDorkingTool: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [customQuery, setCustomQuery] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [queryHistory, setQueryHistory] = useState<any[]>([]);
+  const [queryHistory, setQueryHistory] = useState<QueryHistory[]>([]);
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [showHistory, setShowHistory] = useState<boolean>(false);
   
@@ -210,7 +202,7 @@ const GoogleDorkingTool: React.FC = () => {
     }
   };
 
-  const executeTemplateSearch = (template: any) => {
+  const executeTemplateSearch = (template: DorkTemplate) => {
     const advancedQuery = generateAdvancedQuery(template.query);
     const finalQuery = buildTargetedQuery(advancedQuery);
     const metrics = analyzeQuery(finalQuery);
@@ -276,7 +268,7 @@ const GoogleDorkingTool: React.FC = () => {
   };
 
   const analyzeQuery = (query: string): QueryMetrics => {
-    const complexity = Math.min(10, Math.floor(query.length / 10) + (query.match(/["\-\+\*]/g) || []).length);
+    const complexity = Math.min(10, Math.floor(query.length / 10) + (query.match(/["\-+*]/g) || []).length);
     const riskScore = Math.min(10, Math.floor(complexity * 0.8) + (query.includes('inurl:') ? 2 : 0));
     const estimatedResults = complexity > 7 ? '1K-10K' : complexity > 4 ? '10K-100K' : '100K+';
     const executionTime = Math.floor(Math.random() * 500) + 100;
@@ -292,7 +284,8 @@ const GoogleDorkingTool: React.FC = () => {
     );
   };
 
-  const addToBatch = (template: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const addToBatch = (template: { name: string; query: string }) => {
     const batchQuery: BatchQuery = {
       id: Date.now().toString(),
       name: template.name,
@@ -303,7 +296,17 @@ const GoogleDorkingTool: React.FC = () => {
 
   const executeBatch = async () => {
     for (const query of batchQueries) {
-      executeTemplateSearch({ query: query.query, name: query.name });
+      const template: DorkTemplate = {
+        id: query.id,
+        name: query.name,
+        query: query.query,
+        category: 'batch',
+        description: 'Batch query execution',
+        riskLevel: 'medium',
+        tags: ['batch'],
+        complexity: 'basic'
+      };
+      executeTemplateSearch(template);
       await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
     }
   };
@@ -350,6 +353,7 @@ const GoogleDorkingTool: React.FC = () => {
     localStorage.removeItem('dorkQueryHistory');
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const exportHistory = () => {
     const dataStr = JSON.stringify(queryHistory, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
@@ -412,12 +416,14 @@ const GoogleDorkingTool: React.FC = () => {
   // Apply sorting
   filteredTemplates.sort((a, b) => {
     switch (sortBy) {
-      case 'risk':
+      case 'risk': {
         const riskOrder = { 'low': 1, 'medium': 2, 'high': 3, 'critical': 4 };
         return (riskOrder[b.riskLevel as keyof typeof riskOrder] || 0) - (riskOrder[a.riskLevel as keyof typeof riskOrder] || 0);
-      case 'complexity':
+      }
+      case 'complexity': {
         const complexityOrder = { 'basic': 1, 'intermediate': 2, 'advanced': 3, 'expert': 4 };
         return (complexityOrder[b.complexity as keyof typeof complexityOrder] || 1) - (complexityOrder[a.complexity as keyof typeof complexityOrder] || 1);
+      }
       default:
         return a.name.localeCompare(b.name);
     }
@@ -1123,6 +1129,7 @@ const GoogleDorkingTool: React.FC = () => {
               };
 
               const isFavorite = favorites.includes(template.id);
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const isInBatch = batchQueries.some(q => q.id === template.id);
 
               return (
@@ -1407,7 +1414,7 @@ const GoogleDorkingTool: React.FC = () => {
               </div>
             </div>
             <div className="space-y-2">
-              {batchQueries.map((query, index) => (
+              {batchQueries.map((query) => (
                 <div key={query.id} className={`p-3 rounded-lg border ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-white border-gray-200'} flex justify-between items-center`}>
                   <div className="flex-1">
                     <div className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>{query.name}</div>
